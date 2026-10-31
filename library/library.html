@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Netflix Phrases</title>
+  <link rel="icon" href="../icons/icon32.png">
+  <link rel="stylesheet" href="library.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="../icons/icon32.png" alt="" width="26" height="26">
+      <span>Netflix Phrases</span>
+    </div>
+    <label class="switch" title="Pause or resume recording">
+      <span>Recording</span>
+      <input type="checkbox" id="enabled">
+      <span class="track" aria-hidden="true"></span>
+    </label>
+  </header>
+
+  <div id="app" class="app" hidden>
+    <aside class="sidebar">
+      <h2>Episodes</h2>
+      <nav id="episodes" class="episodes"></nav>
+      <button id="exportAll" class="sidebar-action">
+        <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+        Export all as CSV
+      </button>
+    </aside>
+
+    <main class="content">
+      <div class="content-head">
+        <div class="titles">
+          <h1 id="title"></h1>
+          <p id="count" class="count"></p>
+        </div>
+        <button id="askClaude" class="primary">
+          <svg class="fill" viewBox="0 0 24 24"><path d="M12 4l1.9 6.1L20 12l-6.1 1.9L12 20l-1.9-6.1L4 12l6.1-1.9z"/></svg>
+          Find useful phrases with Claude
+        </button>
+      </div>
+
+      <div class="bar">
+        <label class="search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="text" id="search" placeholder="Search phrases" aria-label="Search phrases" autocomplete="off" spellcheck="false">
+          <kbd>/</kbd>
+        </label>
+        <button id="copy" class="icon" title="Copy lines" aria-label="Copy lines">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+        </button>
+        <button id="export" class="icon" title="Export this episode as CSV" aria-label="Export this episode as CSV">
+          <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+        </button>
+        <button id="delete" class="icon danger" title="Delete all phrases of this episode" aria-label="Delete all phrases of this episode">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6m4-6v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>
+        </button>
+      </div>
+
+      <div id="confirm" class="confirm" hidden>
+        <span id="confirmText"></span>
+        <button id="confirmYes" class="confirm-yes">Delete</button>
+        <button id="confirmNo">Cancel</button>
+      </div>
+
+      <ul id="list" class="list"></ul>
+      <p id="noMatch" class="no-match" hidden>No phrases match your search.</p>
+    </main>
+  </div>
+
+  <section id="empty" class="empty" hidden>
+    <img src="../icons/icon128.png" alt="" width="72" height="72">
+    <h1>No phrases yet</h1>
+    <ol>
+      <li>Open a show on Netflix and turn on subtitles</li>
+      <li>Watch: every line you see is saved</li>
+      <li>Move the mouse over the player and click the phrases button</li>
+    </ol>
+  </section>
+
+  <div id="toast" class="toast" role="status" hidden>
+    <span id="toastText"></span>
+    <button id="toastAction" hidden>Undo</button>
+  </div>
+
+  <script src="../src/phrases.js"></script>
+  <script src="library.js"></script>
+</body>
+</html>
